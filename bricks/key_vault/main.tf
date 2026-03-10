@@ -1,13 +1,13 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "this" {
-  name                        = var.name
-  resource_group_name         = var.resource_group_name
-  location                    = var.location
-  tenant_id                   = var.tenant_id
-  sku_name                    = "standard"
-  soft_delete_retention_days  = var.soft_delete_retention_days
-  purge_protection_enabled    = false
+  name                       = var.name
+  resource_group_name        = var.resource_group_name
+  location                   = var.location
+  tenant_id                  = var.tenant_id
+  sku_name                   = "standard"
+  soft_delete_retention_days = var.soft_delete_retention_days
+  purge_protection_enabled   = false
 }
 
 resource "azurerm_key_vault_access_policy" "current" {

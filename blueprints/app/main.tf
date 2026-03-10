@@ -56,7 +56,7 @@ module "postgres" {
   source = "../../bricks/postgres"
 
   name                   = "${local.prefix}-db-${local.suffix}"
-  resource_group_name     = local.rg
+  resource_group_name    = local.rg
   location               = local.loc
   sku_name               = var.postgres_sku_name
   storage_mb             = var.postgres_storage_mb
@@ -95,13 +95,13 @@ module "api" {
   cpu                          = var.container_cpu
   memory                       = var.container_memory
   env_vars = {
-    "ASPNETCORE_ENVIRONMENT" = var.env
+    "ASPNETCORE_ENVIRONMENT"               = var.env
     "ConnectionStrings__DefaultConnection" = "Host=${module.postgres.server_fqdn};Database=${module.postgres.database_name};Username=birdie69admin;Password=${var.postgres_admin_password};SSL Mode=Require"
   }
-  secret_refs       = {}
-  ingress_enabled   = true
-  min_replicas      = 0
-  max_replicas      = 10
+  secret_refs     = {}
+  ingress_enabled = true
+  min_replicas    = 0
+  max_replicas    = 10
 }
 
 module "cms" {
