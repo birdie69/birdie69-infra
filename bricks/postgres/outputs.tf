@@ -14,6 +14,6 @@ output "database_name" {
 }
 
 output "connection_string_template" {
-  value       = "Host=${azurerm_postgresql_flexible_server.this.fqdn};Database=${azurerm_postgresql_flexible_server_database.this.name};Username=${var.admin_login};Password=REPLACE_WITH_REAL_VALUE;SSL Mode=Require"
-  description = "Connection string template (password must be injected from Key Vault)"
+  value       = "Host=${azurerm_postgresql_flexible_server.this.fqdn};Database=${azurerm_postgresql_flexible_server_database.this.name};Username=${var.admin_login};Password=<inject from Key Vault or secret>;SSL Mode=Require"
+  description = "Connection string template (password must be injected from Key Vault or TF_VAR at runtime)"
 }

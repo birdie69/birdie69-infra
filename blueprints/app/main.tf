@@ -55,13 +55,14 @@ module "key_vault" {
 module "postgres" {
   source = "../../bricks/postgres"
 
-  name                = "${local.prefix}-db-${local.suffix}"
-  resource_group_name = local.rg
-  location            = local.loc
-  sku_name            = var.postgres_sku_name
-  storage_mb          = var.postgres_storage_mb
-  admin_login         = "birdie69admin"
-  database_name      = "birdie69"
+  name                   = "${local.prefix}-db-${local.suffix}"
+  resource_group_name     = local.rg
+  location               = local.loc
+  sku_name               = var.postgres_sku_name
+  storage_mb             = var.postgres_storage_mb
+  admin_login            = "birdie69admin"
+  administrator_password = var.postgres_admin_password
+  database_name          = "birdie69"
 }
 
 module "redis" {

@@ -63,3 +63,10 @@ variable "container_memory" {
   type        = string
   description = "Container memory"
 }
+
+variable "postgres_admin_password" {
+  type        = string
+  sensitive   = true
+  default     = "ReplaceWithRealValue1!"
+  description = "PostgreSQL admin password. Override via TF_VAR_postgres_admin_password; must meet Azure complexity."
+}

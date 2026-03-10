@@ -22,6 +22,7 @@ module "app" {
   redis_sku_name       = var.redis_sku_name
   redis_family         = var.redis_family
   redis_capacity       = var.redis_capacity
-  container_cpu        = var.container_cpu
-  container_memory     = var.container_memory
+  container_cpu         = var.container_cpu
+  container_memory      = var.container_memory
+  postgres_admin_password = var.postgres_admin_password
 }

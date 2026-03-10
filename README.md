@@ -56,6 +56,15 @@ terraform init -backend=false
 terraform validate
 ```
 
+### Injecting the PostgreSQL admin password
+
+The default placeholder meets Azure complexity so `terraform apply` can run, but **do not use it in production**. Override with a real secret at apply time:
+
+- **Environment variable:** `export TF_VAR_postgres_admin_password='YourSecurePassword1!'` (then run `terraform apply`)
+- **CI/CD:** Set `TF_VAR_postgres_admin_password` as a secret in GitHub Actions (or your pipeline) and run apply in that job.
+
+Never commit the real password to the repo.
+
 ## Jira
 
 [B69 Project](https://narwhal.atlassian.net/projects/B69) — Ticket: B69-5

@@ -3,8 +3,8 @@ resource "azurerm_postgresql_flexible_server" "this" {
   resource_group_name = var.resource_group_name
   location            = var.location
   version             = var.postgres_version
-  administrator_login = var.admin_login
-  administrator_password = "REPLACE_WITH_REAL_VALUE" # Set via env / Key Vault; never commit real value
+  administrator_login    = var.admin_login
+  administrator_password = var.administrator_password
 
   sku_name   = var.sku_name
   storage_mb = var.storage_mb

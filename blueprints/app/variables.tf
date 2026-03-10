@@ -75,3 +75,10 @@ variable "name_prefix" {
   default     = "birdie69"
   description = "Prefix for resource names"
 }
+
+variable "postgres_admin_password" {
+  type        = string
+  sensitive   = true
+  default     = "ReplaceWithRealValue1!"
+  description = "PostgreSQL server admin password. Override via TF_VAR_postgres_admin_password or -var; never commit real value. Must meet Azure complexity (8-128 chars, upper, lower, number, special)."
+}

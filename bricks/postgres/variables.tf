@@ -27,7 +27,14 @@ variable "storage_mb" {
 
 variable "admin_login" {
   type        = string
-  description = "Server admin login (no secrets here; password from Key Vault)"
+  description = "Server admin login (no secrets here; password from variable or Key Vault)"
+}
+
+variable "administrator_password" {
+  type        = string
+  sensitive   = true
+  default     = "ReplaceWithRealValue1!"
+  description = "Server admin password. Must meet Azure requirements (8-128 chars, upper, lower, number, special). Override via TF_VAR_administrator_password or -var; never commit real value."
 }
 
 variable "database_name" {
