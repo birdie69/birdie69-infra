@@ -96,7 +96,7 @@ module "api" {
   memory                       = var.container_memory
   env_vars = {
     "ASPNETCORE_ENVIRONMENT" = var.env
-    "ConnectionStrings__DefaultConnection" = "REPLACE_WITH_REAL_VALUE"
+    "ConnectionStrings__DefaultConnection" = "Host=${module.postgres.server_fqdn};Database=${module.postgres.database_name};Username=birdie69admin;Password=${var.postgres_admin_password};SSL Mode=Require"
   }
   secret_refs       = {}
   ingress_enabled   = true
