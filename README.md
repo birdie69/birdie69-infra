@@ -2,7 +2,7 @@
 
 > Terraform infrastructure as code for **birdie69** on Azure, following the Brick → Blueprint → Env pattern.
 
-**Status:** Scaffold pending (Day 4)
+**Status:** Scaffold complete (Day 4 — B69-5)
 
 ---
 
@@ -31,7 +31,7 @@ birdie69-infra/
 
 ## Architecture
 
-See [ADR-004: Infra Container Apps](https://github.com/learn-claude/birdie69-docs/blob/main/adrs/ADR-004-infra-container-apps.md)
+See [ADR-004: Infra Container Apps](https://github.com/birdie69/birdie69-docs/blob/main/adrs/ADR-004-infra-container-apps.md)
 
 ## Prerequisites
 
@@ -48,6 +48,14 @@ terraform plan
 terraform apply
 ```
 
+To validate without a backend (e.g. in CI or before first apply):
+
+```bash
+cd envs/dev
+terraform init -backend=false
+terraform validate
+```
+
 ## Jira
 
-[B69 Project](https://narwhal.atlassian.net/projects/B69) — Ticket: B69-5, B69-20
+[B69 Project](https://narwhal.atlassian.net/projects/B69) — Ticket: B69-5
