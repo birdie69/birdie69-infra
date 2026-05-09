@@ -4,6 +4,14 @@ resource "azurerm_container_app" "this" {
   resource_group_name          = var.resource_group_name
   revision_mode                = "Single"
 
+  dynamic "identity" {
+    for_each = length(var.identity_ids) > 0 ? [1] : []
+    content {
+      type         = "UserAssigned"
+      identity_ids = var.identity_ids
+    }
+  }
+
   dynamic "secret" {
     for_each = var.secret_refs
     content {

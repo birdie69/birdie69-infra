@@ -25,4 +25,5 @@ module "app" {
   container_cpu           = var.container_cpu
   container_memory        = var.container_memory
   postgres_admin_password = var.postgres_admin_password
+  notification_job_image  = var.notification_job_image
 }

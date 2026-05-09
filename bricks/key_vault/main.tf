@@ -29,3 +29,11 @@ resource "azurerm_key_vault_access_policy" "principals" {
   key_permissions    = var.key_permissions
   secret_permissions = var.secret_permissions
 }
+
+resource "azurerm_role_assignment" "api_kv_secrets_user" {
+  count = var.api_principal_id != "" ? 1 : 0
+
+  scope                = azurerm_key_vault.this.id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = var.api_principal_id
+}

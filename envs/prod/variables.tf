@@ -70,3 +70,9 @@ variable "postgres_admin_password" {
   default     = "ReplaceWithRealValue1!"
   description = "PostgreSQL admin password. Override via TF_VAR_postgres_admin_password; must meet Azure complexity."
 }
+
+variable "notification_job_image" {
+  type        = string
+  default     = "mcr.microsoft.com/dotnet/runtime:8.0"
+  description = "Container image for the notification job"
+}
