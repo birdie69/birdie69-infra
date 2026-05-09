@@ -14,3 +14,5 @@ redis_family        = "C"
 redis_capacity      = 0
 container_cpu       = 0.5
 container_memory    = "1Gi"
+
+notification_job_image = "REPLACE_WITH_REAL_VALUE"

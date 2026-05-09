@@ -41,3 +41,9 @@ variable "soft_delete_retention_days" {
   default     = 7
   description = "Soft delete retention in days"
 }
+
+variable "api_principal_id" {
+  type        = string
+  default     = ""
+  description = "Principal ID of the API managed identity; grants Key Vault Secrets User RBAC role when non-empty"
+}

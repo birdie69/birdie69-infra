@@ -59,3 +59,9 @@ variable "max_replicas" {
   default     = 10
   description = "Maximum number of replicas"
 }
+
+variable "identity_ids" {
+  type        = list(string)
+  default     = []
+  description = "List of User Assigned Identity resource IDs to attach to the Container App"
+}

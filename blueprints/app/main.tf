@@ -42,6 +42,14 @@ module "acr" {
   admin_enabled       = false
 }
 
+module "api_identity" {
+  source = "../../bricks/managed_identity"
+
+  name                = "${local.prefix}-api-identity-${local.suffix}"
+  resource_group_name = local.rg
+  location            = local.loc
+}
+
 module "key_vault" {
   source = "../../bricks/key_vault"
 
@@ -50,6 +58,7 @@ module "key_vault" {
   location            = local.loc
   tenant_id           = var.tenant_id
   object_ids          = {}
+  api_principal_id    = module.api_identity.principal_id
 }
 
 module "postgres" {
@@ -102,6 +111,7 @@ module "api" {
   ingress_enabled = true
   min_replicas    = 0
   max_replicas    = 10
+  identity_ids    = [module.api_identity.identity_id]
 }
 
 module "cms" {
@@ -120,4 +130,20 @@ module "cms" {
   ingress_enabled = true
   min_replicas    = 0
   max_replicas    = 10
+}
+
+module "notification_job" {
+  source = "../../bricks/notification_job"
+
+  name                          = "${local.prefix}-notification-job-${local.suffix}"
+  resource_group_name           = local.rg
+  location                      = local.loc
+  container_apps_environment_id = azurerm_container_app_environment.this.id
+  image                         = var.notification_job_image
+  env_vars = [
+    {
+      name  = "ConnectionStrings__DefaultConnection"
+      value = "Host=${module.postgres.server_fqdn};Database=${module.postgres.database_name};Username=birdie69admin;Password=${var.postgres_admin_password};SSL Mode=Require"
+    }
+  ]
 }
